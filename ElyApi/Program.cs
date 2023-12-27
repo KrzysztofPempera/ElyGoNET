@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistance.Configuration;
 
@@ -38,7 +39,15 @@ namespace ElyApi
                     .ToListAsync();
             });
 
-            app.MapPost("/", () => "Hello World!").WithName(""); 
+            app.MapPost("/numbers{number:int}", async (int number, NumbersContext db) =>
+            {
+                var newNumber = new NumberEntity() { Number = number };
+
+                db.Numbers.Add(newNumber);
+                await db.SaveChangesAsync();
+
+                return Results.Ok();
+            }); 
 
             app.Run();
         }
