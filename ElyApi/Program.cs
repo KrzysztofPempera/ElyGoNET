@@ -20,12 +20,23 @@ namespace ElyApi
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ElyApi");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
-            app.MapGet("/numbers", async(NumbersContext db) => 
-                await db.Numbers.ToListAsync()      
-            ).WithName("GetNumbersHistory");
+            app.MapGet("/numbers", async (NumbersContext db) => 
+            {
+                string? latestRecordsStr = Environment.GetEnvironmentVariable("LATEST_RECORDS");
+                var latestRecords = int.TryParse(latestRecordsStr, out var value) ? value : 1;
+
+                return await db.Numbers
+                    .OrderByDescending(x => x.Id)
+                    .Take(latestRecords)
+                    .ToListAsync();
+            });
 
             app.MapPost("/", () => "Hello World!").WithName(""); 
 
