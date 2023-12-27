@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElyApi", "ElyApi\ElyApi.csproj", "{B32B43B7-B3AA-4D28-8D5C-0A6577FE6469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElyApi", "ElyApi\ElyApi.csproj", "{B32B43B7-B3AA-4D28-8D5C-0A6577FE6469}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB1447BD-84AD-4F68-AF57-B03847E3B43B} = {DB1447BD-84AD-4F68-AF57-B03847E3B43B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{4CB15FA8-E0C2-46B6-9386-1FE59DA5A4FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{DB1447BD-84AD-4F68-AF57-B03847E3B43B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{B32B43B7-B3AA-4D28-8D5C-0A6577FE6469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B32B43B7-B3AA-4D28-8D5C-0A6577FE6469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B32B43B7-B3AA-4D28-8D5C-0A6577FE6469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB15FA8-E0C2-46B6-9386-1FE59DA5A4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB15FA8-E0C2-46B6-9386-1FE59DA5A4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB15FA8-E0C2-46B6-9386-1FE59DA5A4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB15FA8-E0C2-46B6-9386-1FE59DA5A4FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
