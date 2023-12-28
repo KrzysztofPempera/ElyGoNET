@@ -8,7 +8,7 @@ import (
 )
 
 type Response struct {
-	Number int `json:":number"`
+	Number int `json:"number"`
 }
 
 func main() {

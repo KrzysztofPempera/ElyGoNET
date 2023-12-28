@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Persistance.Configuration;
 
@@ -13,6 +14,8 @@ namespace ElyApi
             var connectionString = builder.Configuration.GetConnectionString("ElyDb");
             builder.Services.AddDbContext<NumbersContext>(options =>
                 options.UseNpgsql(connectionString));
+
+            builder.Services.AddScoped(hc => new HttpClient { BaseAddress = new Uri("http://localhost:8080") });
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -29,9 +32,10 @@ namespace ElyApi
                 });
             }
 
-            app.MapPost("/numbers{number:int}", async (int number, NumbersContext db) =>
+            app.MapPost("/numbers", async (HttpClient http, NumbersContext db) =>
             {
-                var newNumber = new NumberEntity() { Number = number };
+                var number = await http.GetFromJsonAsync<NumberModel>("/random");
+                var newNumber = new NumberEntity() { Number = number.number };
 
                 db.Numbers.Add(newNumber);
                 await db.SaveChangesAsync();
