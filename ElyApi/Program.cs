@@ -13,6 +13,7 @@ namespace ElyApi
             var connectionString = builder.Configuration.GetConnectionString("ElyDb");
             builder.Services.AddDbContext<NumbersContext>(options =>
                 options.UseNpgsql(connectionString));
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -28,17 +29,6 @@ namespace ElyApi
                 });
             }
 
-            app.MapGet("/numbers", async (NumbersContext db) => 
-            {
-                string? latestRecordsStr = Environment.GetEnvironmentVariable("LATEST_RECORDS");
-                var latestRecords = int.TryParse(latestRecordsStr, out var value) ? value : 1;
-
-                return await db.Numbers
-                    .OrderByDescending(x => x.Id)
-                    .Take(latestRecords)
-                    .ToListAsync();
-            });
-
             app.MapPost("/numbers{number:int}", async (int number, NumbersContext db) =>
             {
                 var newNumber = new NumberEntity() { Number = number };
@@ -46,7 +36,13 @@ namespace ElyApi
                 db.Numbers.Add(newNumber);
                 await db.SaveChangesAsync();
 
-                return Results.Ok();
+                string? latestRecordsStr = Environment.GetEnvironmentVariable("LATEST_RECORDS");
+                var latestRecords = int.TryParse(latestRecordsStr, out var value) ? value : 1;
+
+                return await db.Numbers
+                    .OrderByDescending(x => x.Id)
+                    .Take(latestRecords)
+                    .ToListAsync();
             }); 
 
             app.Run();
