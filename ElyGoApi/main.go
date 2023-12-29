@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"math/rand"
 	"net/http"
 )
@@ -29,6 +28,5 @@ func main() {
 		w.Write(jsonResponse)
 	})
 
-	fmt.Println("Server is running on :8080")
 	http.ListenAndServe(":8080", nil)
 }

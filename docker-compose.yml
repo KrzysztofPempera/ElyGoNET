@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  elyapi:
+    image: ${DOCKER_REGISTRY-}elyapi
+    container_name: ely-net-api
+    build:
+      context: .
+      dockerfile: ElyApi/Dockerfile
+    environment:
+      - LATEST_RECORDS=5
+  
+  ely-go-api:
+    image: ${DOCKER_REGISTRY-}docker-ely-go
+    container_name: ely-go-api
+    build:
+      context: .
+      dockerfile: ElyGoApi/Dockerfile
+    ports:
+      - '8080:8080'
+  
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: ely-db-container
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=elyDb  
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:

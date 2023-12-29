@@ -12,13 +12,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Persistance\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{DB1447BD-84AD-4F68-AF57-B03847E3B43B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{4BC6A122-5A2B-4E87-AFAE-A4C324D248ED}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ElyGoApi", "ElyGoApi", "{0212B71C-29B2-4429-B986-CFDC2BCF7848}"
 	ProjectSection(SolutionItems) = preProject
+		ElyGoApi\Dockerfile = ElyGoApi\Dockerfile
 		ElyGoApi\go.mod = ElyGoApi\go.mod
 		ElyGoApi\main.go = ElyGoApi\main.go
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElyApi.IntegrationTests", "ElyApi.IntegrationTests\ElyApi.IntegrationTests.csproj", "{C29307A6-5FEF-40E7-8207-4CBD45E16296}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{941F397B-4241-4190-97B7-6D21450B10F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +41,14 @@ Global
 		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB1447BD-84AD-4F68-AF57-B03847E3B43B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BC6A122-5A2B-4E87-AFAE-A4C324D248ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BC6A122-5A2B-4E87-AFAE-A4C324D248ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BC6A122-5A2B-4E87-AFAE-A4C324D248ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BC6A122-5A2B-4E87-AFAE-A4C324D248ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C29307A6-5FEF-40E7-8207-4CBD45E16296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C29307A6-5FEF-40E7-8207-4CBD45E16296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C29307A6-5FEF-40E7-8207-4CBD45E16296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C29307A6-5FEF-40E7-8207-4CBD45E16296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{941F397B-4241-4190-97B7-6D21450B10F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941F397B-4241-4190-97B7-6D21450B10F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941F397B-4241-4190-97B7-6D21450B10F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941F397B-4241-4190-97B7-6D21450B10F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

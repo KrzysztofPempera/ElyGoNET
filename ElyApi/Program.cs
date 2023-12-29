@@ -5,7 +5,7 @@ using Persistance.Configuration;
 
 namespace ElyApi
 {
-    public class Program
+    public partial class Program
     {
         public static void Main(string[] args)
         {
@@ -15,7 +15,7 @@ namespace ElyApi
             builder.Services.AddDbContext<NumbersContext>(options =>
                 options.UseNpgsql(connectionString));
 
-            builder.Services.AddScoped(hc => new HttpClient { BaseAddress = new Uri("http://localhost:8080") });
+            builder.Services.AddScoped(hc => new HttpClient { BaseAddress = new Uri("http://ely-go-api:8080") });
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -34,7 +34,7 @@ namespace ElyApi
 
             app.MapPost("/numbers", async (HttpClient http, NumbersContext db) =>
             {
-                var number = await http.GetFromJsonAsync<NumberModel>("/random");
+                var number = await http.GetFromJsonAsync<NumberModel>("random");
                 var newNumber = new NumberEntity() { Number = number.number };
 
                 db.Numbers.Add(newNumber);
